@@ -16,20 +16,15 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'client','dist', 'index.html'));
 });
 
-app.get('/ada', async (req, res) => {
+app.get('/report', async (req, res) => {
     const executablePath = process.platform === 'darwin' ?
         '/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome' :
-        'node_modules/puppeteer/.local-chromium/linux-575458/chrome-linux/chrome';
+        'google-chrome-unstable';
     const host = req.query.host;
     const options = {
         headless: true,
         fullPage: true,
         executablePath,
-        args: [
-            '--no-sandbox',
-            '--disable-setuid-sandbox',
-            '--disable-gpu',
-        ],
     };
     const axeRules = ['wcag2a', 'wcag2aa', 'wcag21aa', 'section508', 'cat'];
     try {

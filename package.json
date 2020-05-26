@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "cd client &&  npm run build",
-    "installBoth": "npm install && cd client && npm install",
+    "installBoth": "npm ci && cd client && npm ci",
     "start": "node ./server.js"
   },
   "author": "",

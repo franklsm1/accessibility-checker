@@ -36,12 +36,18 @@ const App = ({ classes }) => {
     const checkAccessibility = () => {
         setReport('Analyzing Page...');
 
-        fetch(`/ada?host=${host}`)
-            .then(response => response.json())
+        fetch(`/report?host=${host}`)
+            .then((response) => {
+                if (response.status !== 200) {
+                    throw new Error('invalid response status');
+                }
+                return response.json();
+            })
             .then((responseText) => {
                 setReport(<AxeReport results={responseText} />);
             })
-            .catch(() => {
+            .catch((e) => {
+                console.error(e);
                 setReport('There was an error loading Page, please double check the URL');
             });
     };
