@@ -13,12 +13,10 @@ Thanks to Andrew Pulley ([@apulley](https://github.com/apulley)) for the puppete
 1. visit http://localhost:8080 to see the site running locally
 
 ### Steps to run container locally (assuming docker is installed)
-1. Expose your desired PORT env variable
-    - `export PORT=8087`
 1. Build the container
-    - `docker build --build-arg PORT=$PORT -t accessibility-checker .`
+    - `docker build -t accessibility-checker .`
 1. Run the container
-    - `docker run --privileged -p $PORT:$PORT -e PORT=$PORT --name accessibility-checker -d accessibility-checker`
+    - `docker run --privileged -p 8087:80 --name accessibility-checker -d accessibility-checker`
 1. Visit http://localhost:8087 to view the app
 
 ##### Helpful Docker commands:

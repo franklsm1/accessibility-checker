@@ -25,6 +25,7 @@ app.get('/report', async (req, res) => {
         headless: true,
         fullPage: true,
         executablePath,
+        args: [ '--no-sandbox' ],
     };
     const axeRules = ['wcag2a', 'wcag2aa', 'wcag21aa', 'section508', 'cat'];
     try {
