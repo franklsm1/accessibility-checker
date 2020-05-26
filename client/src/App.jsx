@@ -69,13 +69,13 @@ const App = ({ classes }) => {
                 justify="center"
                 alignItems="center"
             >
-                <Grid item style={{ minWidth: '700px' }}>
+                <Grid item>
                     <Card variant="outlined" className={classes.card}>
                         <CardContent>
                             <Grid container direction="column" spacing={3}>
                                 <Grid item>
                                     <Typography variant="subtitle1">
-                                        Make all selections and submit to check connectivity
+                                        Input url and submit to check for accessibility violations
                                     </Typography>
                                 </Grid>
                                 <Grid item>
@@ -90,7 +90,7 @@ const App = ({ classes }) => {
                                 </Grid>
                                 <Grid item>
                                     <Button id="checkAccessibility" variant="contained" onClick={checkAccessibility}>
-                                Check Connection
+                                Check Accessibility
                                     </Button>
                                 </Grid>
                                 <Grid item>
