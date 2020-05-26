@@ -41,7 +41,15 @@ const AxeReport = ({ results }) => {
         return (
             <TableRow key={violationValues.impact}>
                 <TableCell><code>{violationValues.help}</code></TableCell>
-                <TableCell align="center"><a href={violationValues.helpUrl}>Link</a></TableCell>
+                <TableCell align="center">
+                    <a
+                        href={violationValues.helpUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Link
+                    </a>
+                </TableCell>
                 <TableCell align="center">
                     {showElements ? violation.nodes.map(node => (
                         <div>

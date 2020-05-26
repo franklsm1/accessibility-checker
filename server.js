@@ -4,6 +4,12 @@ const path = require('path');
 const cors = require('cors');
 const { AxePuppeteer } = require('axe-puppeteer');
 const puppeteer = require('puppeteer');
+const NodeCache = require( "node-cache" );
+
+const cache = new NodeCache({
+    stdTTL: 60 * 60, // cache values for 1 hour
+    checkperiod: 60, // check every minute for expired values
+});
 
 const port = process.env.PORT || 8080;
 
@@ -22,29 +28,36 @@ app.get('/report', async (req, res) => {
         'google-chrome-unstable';
     if (req.query.host) {
         const host = req.query.host && req.query.host.indexOf('http') === 0 ? req.query.host : `https://${req.query.host}`;
-        const options = {
-            headless: true,
-            fullPage: true,
-            executablePath,
-            args: ['--no-sandbox'],
-        };
-        const axeRules = ['wcag2a', 'wcag2aa', 'wcag21aa', 'section508', 'cat'];
-        try {
-            const browser = await puppeteer.launch(options);
-            const page = await browser.newPage();
-            await page.setBypassCSP(true);
 
-            await page.goto(host);
+        const value = cache.get(host);
+        if (value) {
+            res.send(value);
+        } else {
+            const options = {
+                headless: true,
+                fullPage: true,
+                executablePath,
+                args: ['--no-sandbox'],
+            };
+            const axeRules = ['wcag2a', 'wcag2aa', 'wcag21aa', 'section508', 'cat'];
+            try {
+                const browser = await puppeteer.launch(options);
+                const page = await browser.newPage();
+                await page.setBypassCSP(true);
 
-            let results = await new AxePuppeteer(page).withTags(axeRules).analyze();
+                await page.goto(host);
 
-            await page.close();
-            await browser.close();
+                let results = await new AxePuppeteer(page).withTags(axeRules).analyze();
 
-            res.send(results);
-        } catch (error) {
-            console.log(error);
-            res.status(500).send(error);
+                await page.close();
+                await browser.close();
+
+                cache.set(host, results);
+                res.send(results);
+            } catch (error) {
+                console.log(error);
+                res.status(500).send(error);
+            }
         }
     } else {
         res.status(400).send("the host query parameter is required");

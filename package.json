@@ -6,6 +6,7 @@
   "main": "index.js",
   "scripts": {
     "build": "cd client &&  npm run build",
+    "test": "cd client &&  npm run test",
     "installBoth": "npm ci && cd client && npm ci",
     "start": "node ./server.js"
   },
@@ -16,6 +17,7 @@
     "colors": "^1.4.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
+    "node-cache": "^5.1.0",
     "puppeteer": "^3.0.4"
   },
   "devDependencies": {
