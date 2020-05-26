@@ -32,7 +32,7 @@ RUN cd client && npm run eslint && npm run test && npm run build
 RUN cd ..
 
 # Set app port and exposed ports
-ENV PORT=80
+ENV PORT=443
 EXPOSE 80 443
 
 # Start app
