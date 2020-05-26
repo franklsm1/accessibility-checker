@@ -1,7 +1,8 @@
-# Accessibiliity Checker
+# Website Accessibiliity Checker
 #### A UI taking a url and producing accessibility results
 Thanks to Andrew Pulley ([@apulley](https://github.com/apulley)) for the puppeteer / axe integration code
  
+##### You can view the live application [here](accessibility.allstate.io)
 ### Steps to run app locally
 1. clone the repo:
 1. inside the cloned repo install the server and UI dependencies:
@@ -16,7 +17,7 @@ Thanks to Andrew Pulley ([@apulley](https://github.com/apulley)) for the puppete
 1. Build the container
     - `docker build -t accessibility-checker .`
 1. Run the container
-    - `docker run --privileged -p 8087:80 --name accessibility-checker -d accessibility-checker`
+    - `docker run --privileged -p 8087:443 --name accessibility-checker -d accessibility-checker`
 1. Visit http://localhost:8087 to view the app
 
 ##### Helpful Docker commands:
@@ -28,4 +29,4 @@ Thanks to Andrew Pulley ([@apulley](https://github.com/apulley)) for the puppete
 
 ### App Screenshot
 **Example URL to analyze:** https://dequeuniversity.com/demo/mars/
-![Example Accessiblitity Report](ExampleUIOutput.png)
+![Example Accessiblitity Report](https://github.com/franklsm1/accessibility-checker/raw/master/ExampleUIOutput.png)
