@@ -12,6 +12,6 @@ describe('<App />', () => {
 
     it('renders page with header', () => {
         setup();
-        expect(wrapper.text()).toContain('Accessibility Checker UI');
+        expect(wrapper.text()).toContain('Accessibility Analysis');
     });
 });

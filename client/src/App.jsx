@@ -57,7 +57,7 @@ const App = ({ classes }) => {
             <AppBar className={classes.appbar} position="static">
                 <Toolbar>
                     <Typography variant="h6">
-                        Accessibility Checker UI
+                        Accessibility Analysis
                     </Typography>
                 </Toolbar>
             </AppBar>
@@ -77,7 +77,7 @@ const App = ({ classes }) => {
                                     <Typography variant="subtitle1">
                                         Input url and submit to check for accessibility violations
                                     </Typography>
-                                    <Typography variant="body">
+                                    <Typography variant="subtitle2">
                                         (results are cached for one hour)
                                     </Typography>
                                 </Grid>
