@@ -31,6 +31,10 @@ RUN npm run installBoth
 RUN cd client && npm run eslint && npm run test && npm run build
 RUN cd ..
 
+# Expose port (doing prior to add user since 80 needs priviledged mode)
+ENV PORT ${PORT:-80}
+EXPOSE $PORT
+
 # Add user so we don't need --no-sandbox.
 RUN groupadd -r pptruser && useradd -r -g pptruser -G audio,video pptruser \
     && mkdir -p /home/pptruser/Downloads \
@@ -39,7 +43,5 @@ RUN groupadd -r pptruser && useradd -r -g pptruser -G audio,video pptruser \
 USER pptruser
 
 # Start app
-ENV PORT ${PORT:-8087}
-EXPOSE $PORT
 ENTRYPOINT ["dumb-init", "--"]
 CMD ["npm", "run", "start"]
