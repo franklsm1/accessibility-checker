@@ -20,30 +20,34 @@ app.get('/report', async (req, res) => {
     const executablePath = process.platform === 'darwin' ?
         '/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome' :
         'google-chrome-unstable';
-    const host = req.query.host;
-    const options = {
-        headless: true,
-        fullPage: true,
-        executablePath,
-        args: [ '--no-sandbox' ],
-    };
-    const axeRules = ['wcag2a', 'wcag2aa', 'wcag21aa', 'section508', 'cat'];
-    try {
-        const browser = await puppeteer.launch(options);
-        const page = await browser.newPage();
-        await page.setBypassCSP(true);
+    if (req.query.host) {
+        const host = req.query.host && req.query.host.indexOf('http') === 0 ? req.query.host : `https://${req.query.host}`;
+        const options = {
+            headless: true,
+            fullPage: true,
+            executablePath,
+            args: ['--no-sandbox'],
+        };
+        const axeRules = ['wcag2a', 'wcag2aa', 'wcag21aa', 'section508', 'cat'];
+        try {
+            const browser = await puppeteer.launch(options);
+            const page = await browser.newPage();
+            await page.setBypassCSP(true);
 
-        await page.goto(host);
+            await page.goto(host);
 
-        let results = await new AxePuppeteer(page).withTags(axeRules).analyze();
+            let results = await new AxePuppeteer(page).withTags(axeRules).analyze();
 
-        await page.close();
-        await browser.close();
+            await page.close();
+            await browser.close();
 
-        res.send(results);
-    } catch (error) {
-        console.log(error);
-        res.status(500).send(error);
+            res.send(results);
+        } catch (error) {
+            console.log(error);
+            res.status(500).send(error);
+        }
+    } else {
+        res.status(400).send("the host query parameter is required");
     }
 });
 

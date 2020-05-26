@@ -5,8 +5,8 @@
   "private": true,
   "main": "index.js",
   "scripts": {
-    "test": "jest",
-    "testWithResults": "jest --json --outputFile=./testResults.json",
+    "test": "npm run eslint && jest",
+    "testWithResults": "npm run eslint && jest --json --outputFile=./testResults.json",
     "start": "webpack-dev-server --mode development --open --port 9000",
     "build": "webpack --mode production",
     "eslint": "eslint 'src/**/*js*'"

@@ -12,9 +12,8 @@ import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles({
-    table: {
-        minWidth: 650,
-    },
+    table: {},
+    tableContainer: {},
 });
 
 const selectorToString = (selectors, separator = '') => selectors
@@ -33,7 +32,7 @@ const AxeReport = ({ results }) => {
         const [showElements, setShowElements] = useState(false);
         const violationValues = {
             impact: violation.impact,
-            help: violation.help.replace(/</gi, '&lt;').replace(/>/gi, '&gt;'),
+            help: violation.help,
             bestPractice: violation.tags.indexOf('best-practice') !== -1,
             helpUrl: violation.helpUrl,
             count: violation.nodes.length,
@@ -41,7 +40,7 @@ const AxeReport = ({ results }) => {
         totalIssueCount += violation.nodes.length;
         return (
             <TableRow key={violationValues.impact}>
-                <TableCell>{violationValues.help}</TableCell>
+                <TableCell><code>{violationValues.help}</code></TableCell>
                 <TableCell align="center"><a href={violationValues.helpUrl}>Link</a></TableCell>
                 <TableCell align="center">
                     {showElements ? violation.nodes.map(node => (
@@ -63,7 +62,7 @@ const AxeReport = ({ results }) => {
             <Typography variant="h5" style={{ color: 'red' }}>
                 {totalIssueCount} total violations found.
             </Typography>
-            <TableContainer component={Paper}>
+            <TableContainer className={classes.tableContainer} component={Paper}>
                 <Table className={classes.table} aria-label="simple table">
                     <TableHead>
                         <TableRow>

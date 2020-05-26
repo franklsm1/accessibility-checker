@@ -28,7 +28,7 @@ WORKDIR app
 # Lint, test, and build the app
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
 RUN npm run installBoth
-RUN cd client && npm run eslint && npm run test && npm run build
+RUN cd client && npm run build
 RUN cd ..
 
 # Set app port and exposed ports

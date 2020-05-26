@@ -1,5 +1,6 @@
 {
   "name": "accessibility-checker",
+  "repository": "https://github.com/franklsm1/accessibility-checker",
   "version": "0.1.0",
   "description": "",
   "main": "index.js",
@@ -18,7 +19,7 @@
     "puppeteer": "^3.0.4"
   },
   "devDependencies": {
-    "husky": "^4.0.7"
+    "husky": "^4.2.5"
   },
   "husky": {
     "hooks": {
