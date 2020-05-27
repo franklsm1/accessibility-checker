@@ -78,7 +78,7 @@ const App = ({ classes }) => {
                                         Input url and submit to check for accessibility violations
                                     </Typography>
                                     <Typography variant="subtitle2">
-                                        (results are cached for one hour)
+                                        (reports are cached for 24 hours)
                                     </Typography>
                                 </Grid>
                                 <Grid item>

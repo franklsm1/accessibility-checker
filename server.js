@@ -14,7 +14,7 @@ const AdblockerPlugin = require('puppeteer-extra-plugin-adblocker');
 puppeteer.use(AdblockerPlugin({blockTrackers: true}));
 
 const cache = new NodeCache({
-    stdTTL: 60 * 60, // cache values for 1 hour
+    stdTTL: 60 * 60 * 24, // cache values for 24 hour
     checkperiod: 60, // check every minute for expired values
 });
 
@@ -56,7 +56,7 @@ app.get('/report', async (req, res) => {
                 await page.setDefaultNavigationTimeout(0);
 
                 /*
-                    This block will skip loading images, but can't wotk in conjunction with add block plugin
+                    This block will skip loading images, but can't work in conjunction with add block plugin
                  */
                 // //turns request interceptor on
                 // await page.setRequestInterception(true);
