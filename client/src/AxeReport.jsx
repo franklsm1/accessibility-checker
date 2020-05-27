@@ -78,7 +78,7 @@ const AxeReport = ({ results }) => {
                             <TableCell align="center">More Info</TableCell>
                             <TableCell align="center">Elements</TableCell>
                             <TableCell align="center">Count</TableCell>
-                            <TableCell align="center">Impact</TableCell>
+                            <TableCell align="center">Severity</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
