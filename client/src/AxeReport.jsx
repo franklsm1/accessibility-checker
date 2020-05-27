@@ -20,8 +20,6 @@ const useStyles = makeStyles({
     },
 });
 
-const selectorToString = (selectors, separator = '') => selectors.reduce((prev, curr) => prev.concat(curr), []).join(separator);
-
 // eslint-disable-next-line react/prop-types
 const AxeReport = ({ results }) => {
     const classes = useStyles();
@@ -69,7 +67,7 @@ const AxeReport = ({ results }) => {
                     {showElements
             && violation.nodes.map(node => (
                 <div>
-                    {selectorToString(node.target)}
+                    <code>{node.html}</code>
                     <br />
                 </div>
             ))}
