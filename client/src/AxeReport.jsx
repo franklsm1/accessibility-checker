@@ -18,6 +18,13 @@ const useStyles = makeStyles({
         padding: '0.25rem',
         fontSize: '0.6rem',
     },
+    violatedHtmlDiv: {
+        overflowX: 'scroll',
+        whiteSpace: 'nowrap',
+    },
+    violatedHtmlTableCell: {
+        maxWidth: '400px',
+    },
 });
 
 // eslint-disable-next-line react/prop-types
@@ -54,7 +61,7 @@ const AxeReport = ({ results }) => {
             Link
                     </a>
                 </TableCell>
-                <TableCell align="center">
+                <TableCell align="center" className={classes.violatedHtmlTableCell}>
                     <Button
                         className={classes.elementListButton}
                         variant="contained"
@@ -66,7 +73,7 @@ const AxeReport = ({ results }) => {
                     <br />
                     {showElements
             && violation.nodes.map(node => (
-                <div>
+                <div className={classes.violatedHtmlDiv}>
                     <code>{node.html}</code>
                     <br />
                 </div>
