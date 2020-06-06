@@ -26,13 +26,14 @@ COPY . /app/
 WORKDIR app
 
 # Lint, test, and build the app
+ENV NODE_ENV=production
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
 RUN npm run installBoth
 RUN npm run build
 
-# Set app port and exposed ports
-ENV PORT=443
-EXPOSE 80 443
+# Set and expose app port, default to 443
+ENV PORT=${PORT:-443}
+EXPOSE $PORT
 
 # Start app
 ENTRYPOINT ["dumb-init", "--"]

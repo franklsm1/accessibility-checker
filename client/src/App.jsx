@@ -34,7 +34,7 @@ const App = ({ classes }) => {
     const [host, setHost] = useState('');
 
     const checkAccessibility = () => {
-        setReport('Analyzing Page (may take up to 30s)...');
+        setReport('Analyzing Page (may take 30-60 seconds)...');
 
         fetch(`/report?host=${host}`)
             .then((response) => {
