@@ -31,8 +31,8 @@ ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
 RUN npm run installBoth
 RUN npm run build
 
-# Set and expose app port, default to 443
-ENV PORT=${PORT:-443}
+# Set and expose app port, default to 8087
+ENV PORT=${PORT:-8087}
 EXPOSE $PORT
 
 # Start app
